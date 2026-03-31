@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: analysis-of-pill
+    env: python
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py makemigrations && python manage.py migrate"
+    startCommand: "gunicorn Detection_and_Analysis_of_Pill.wsgi:application --timeout 120 --workers 1"

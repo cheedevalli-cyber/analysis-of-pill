@@ -1,0 +1,422 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Pill Identification System - Prediction</title>
+
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/nice-select.css">
+<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="assets/css/icofont.css">
+<link rel="stylesheet" href="assets/css/slicknav.min.css">
+<link rel="stylesheet" href="assets/css/owl-carousel.css">
+<link rel="stylesheet" href="assets/css/datepicker.css">
+<link rel="stylesheet" href="assets/css/animate.min.css">
+<link rel="stylesheet" href="assets/css/magnific-popup.css">
+<link rel="stylesheet" href="assets/css/normalize.css">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+
+<style>
+  /* ---- Pill Result Styles ---- */
+  .pill-result-section {
+    background: #f7faff;
+    padding: 30px 0 40px 0;
+  }
+  .pill-image-card {
+    border-radius: 18px;
+    box-shadow: 0 6px 32px rgba(0,102,204,0.13);
+    overflow: hidden;
+    background: #fff;
+    padding: 18px;
+    text-align: center;
+  }
+  .pill-image-card img {
+    max-height: 300px;
+    border-radius: 12px;
+    object-fit: contain;
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+  .pill-prediction-badge {
+    display: inline-block;
+    margin-top: 14px;
+    background: linear-gradient(135deg, #0066cc, #00c3ff);
+    color: #fff;
+    border-radius: 30px;
+    padding: 8px 28px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    box-shadow: 0 3px 12px rgba(0,102,204,0.18);
+  }
+  /* Advantage, Effect & Disadvantage highlight cards */
+  .info-highlight-card {
+    border-radius: 20px;
+    padding: 24px 22px;
+    height: 100%;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .info-highlight-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+  }
+  .info-highlight-card.advantage {
+    background: linear-gradient(135deg, #00b09b, #96c93d); /* Vibrant Green */
+  }
+  .info-highlight-card.effect {
+    background: linear-gradient(135deg, #8e2de2, #4a00e0); /* Vibrant Purple/Blue */
+  }
+  .info-highlight-card.disadvantage {
+    background: linear-gradient(135deg, #eb3349, #f45c43); /* Vibrant Red/Orange */
+  }
+  .info-highlight-card h4 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  .info-highlight-card p {
+    font-size: 1.05rem;
+    margin: 0;
+    color: #ffffff;
+    font-weight: 600;
+    line-height: 1.5;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+  /* Full info table */
+  .pill-info-table {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 16px rgba(0,102,204,0.08);
+    overflow: hidden;
+  }
+  .pill-info-table table {
+    margin: 0;
+    width: 100%;
+  }
+  .pill-info-table th {
+    background: #0066cc;
+    color: #fff;
+    width: 35%;
+    vertical-align: middle;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+  }
+  .pill-info-table td {
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    vertical-align: middle;
+    color: #333;
+  }
+  .pill-info-table tr:nth-child(even) td { background: #f0f6ff; }
+  .section-label {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: #0066cc;
+    margin-bottom: 18px;
+  }
+  .upload-form-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 18px rgba(0,102,204,0.09);
+    padding: 30px 28px;
+    margin-top: 10px;
+  }
+</style>
+</head>
+
+<body>
+
+<header class="header_section" style="position: relative; width: 100%;">
+  <!-- Top Header with Blue Background -->
+  <div class="header_top" style="background: #00bfff; padding: 35px 0; border-bottom: 4px solid #0099cc;">
+    <div class="container text-center">
+      <h1 style="margin: 0; color: #fff; font-size: 2.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Pill Identification System</h1>
+    </div>
+  </div>
+
+  <!-- Bottom Header / Menu with Black Background -->
+  <div class="header_bottom" style="background: #1a1a1a; padding: 15px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark" style="padding: 0; display: flex; justify-content: space-between; align-items: center;">
+        <div class="navbar-brand" style="margin-right: auto;">
+          <h2 style="color: #00e5ff; font-size: 1.6rem; font-weight: 700; margin: 0; letter-spacing: 1px;">Reliable & Accurate Identification</h2>
+        </div>
+        
+        <div class="navbar-collapse justify-content-end">
+          <ul class="navbar-nav" style="display: flex; list-style: none; margin: 0; padding: 0; flex-direction: row; gap: 20px;">
+            <li class="nav-item">
+              <a class="nav-link" href="userHome" style="color: #fff; font-weight: 600; text-transform: uppercase;">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="prediction" style="color: #fff; font-weight: 600; text-transform: uppercase;">Prediction</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="classificationView" style="color: #fff; font-weight: 600; text-transform: uppercase;">Classification View</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/" style="color: #fff; font-weight: 600; text-transform: uppercase;">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<div style="margin-top: 30px;"></div> <!-- Extra space below header -->
+
+<div class="collapse navbar-collapse ml-auto">
+<ul class="navbar-nav ml-auto">
+
+<li class="nav-item">
+<a class="nav-link" href="userHome">Home</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="prediction">Prediction</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="classificationView">Classification View</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="/">Logout</a>
+</li>
+
+</ul>
+</div>
+
+</nav>
+</div>
+</div>
+</header>
+
+
+<!-- ===== Upload / Result Section ===== -->
+<section class="pill-result-section">
+<div class="container">
+
+  <div class="row justify-content-center mb-4">
+    <div class="col-lg-8 text-center">
+      <div class="section-title">
+        <h2>Safe and Accurate Pill Identification</h2>
+      </div>
+    </div>
+  </div>
+
+  {% if uploaded_file_url %}
+  <!-- ===== RESULT AREA ===== -->
+
+  <!-- Dual Image Display (Side by Side) -->
+  <div class="row justify-content-center mb-4">
+    <!-- Original Image Card -->
+    <div class="col-lg-5 col-md-6 mb-3">
+      <div class="pill-image-card">
+        <h5 class="mb-2" style="color: #666; font-weight: 600;">Input Image</h5>
+        <img src="{{ original_file_url }}?t={{ now|date:'U' }}" alt="Original Pill Image" style="display:block; margin:0 auto; max-height:300px; width:auto; max-width:100%; border-radius:12px; filter: grayscale(20%);">
+        <div class="mt-2 text-muted small">Original uploaded photo</div>
+      </div>
+    </div>
+
+    <!-- Processed Image Card -->
+    <div class="col-lg-5 col-md-6 mb-3">
+      <div class="pill-image-card">
+        <h5 class="mb-2" style="color: #0066cc; font-weight: 700;">Identified Pill</h5>
+        <img src="{{ uploaded_file_url }}?t={{ now|date:'U' }}" alt="Processed Pill Image" style="display:block; margin:0 auto; max-height:300px; width:auto; max-width:100%; border-radius:12px; border: 2px solid #00bfff;">
+        <div class="pill-prediction-badge" style="margin-top:14px;">
+          <i class="icofont icofont-pill"></i>&nbsp; {{ Prediction }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Advantages, Effects, Disadvantages Cards (side by side) -->
+  {% if pill_data.advantages or pill_data.effects or pill_data.disadvantages %}
+  <div class="row justify-content-center mb-4">
+
+    {% if pill_data.advantages %}
+    <div class="col-lg-4 col-md-6 mb-3">
+      <div class="info-highlight-card advantage" style="height:100%;">
+        <h4><i class="icofont icofont-check-circled"></i> Advantages</h4>
+        <p>{{ pill_data.advantages }}</p>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if pill_data.effects %}
+    <div class="col-lg-4 col-md-6 mb-3">
+      <div class="info-highlight-card effect" style="height:100%;">
+        <h4><i class="icofont icofont-heart-beat-alt"></i> Effects</h4>
+        <p>{{ pill_data.effects }}</p>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if pill_data.disadvantages %}
+    <div class="col-lg-4 col-md-6 mb-3">
+      <div class="info-highlight-card disadvantage" style="height:100%;">
+        <h4><i class="icofont icofont-warning-alt"></i> Disadvantages</h4>
+        <p>{{ pill_data.disadvantages }}</p>
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+  {% endif %}
+
+  <!-- Row 2: Full Pill Info Table -->
+  {% if pill_data %}
+  <div class="row justify-content-center mb-4">
+    <div class="col-lg-12">
+      <p class="section-label"><i class="icofont icofont-info-circle"></i> Full Pill Information</p>
+      <div class="pill-info-table">
+        <table class="table table-bordered mb-0">
+          <tbody>
+            {% if pill_data.pill_name %}
+            <tr>
+              <th>Pill Name</th>
+              <td>{{ pill_data.pill_name }}</td>
+            </tr>
+            {% endif %}
+            {% if pill_data.medical_uses %}
+            <tr>
+              <th>Medical Uses</th>
+              <td>{{ pill_data.medical_uses }}</td>
+            </tr>
+            {% endif %}
+            {% if pill_data.how_it_works %}
+            <tr>
+              <th>How It Works</th>
+              <td>{{ pill_data.how_it_works }}</td>
+            </tr>
+            {% endif %}
+            {% if pill_data.dosage %}
+            <tr>
+              <th>Recommended Dosage</th>
+              <td>{{ pill_data.dosage }}</td>
+            </tr>
+            {% endif %}
+            {% if pill_data.side_effects %}
+            <tr>
+              <th>Possible Side Effects</th>
+              <td>{{ pill_data.side_effects }}</td>
+            </tr>
+            {% endif %}
+            {% if pill_data.warnings %}
+            <tr>
+              <th>Safety Warnings</th>
+              <td>{{ pill_data.warnings }}</td>
+            </tr>
+            {% endif %}
+            {% if pill_data.advantages %}
+            <tr>
+              <th>Advantages</th>
+              <td>{{ pill_data.advantages }}</td>
+            </tr>
+            {% endif %}
+            {% if pill_data.effects %}
+            <tr>
+              <th>Effects</th>
+              <td>{{ pill_data.effects }}</td>
+            </tr>
+            {% endif %}
+            {% if pill_data.disadvantages %}
+            <tr>
+              <th>Disadvantages</th>
+              <td>{{ pill_data.disadvantages }}</td>
+            </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Fallback: raw pill_info if pill_data was not parsed -->
+  {% if not pill_data and pill_info %}
+  <div class="row justify-content-center mb-4">
+    <div class="col-lg-10">
+      <h4>Pill Information</h4>
+      <pre style="text-align:left; font-size:15px;">{{ pill_info }}</pre>
+    </div>
+  </div>
+  {% endif %}
+
+  {% endif %}
+  <!-- ===== END RESULT AREA ===== -->
+
+
+  <!-- Upload Form -->
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="upload-form-card">
+        <h5 class="mb-3"><i class="icofont icofont-upload"></i> Upload a Pill Image</h5>
+        <form action="/prediction" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="pillImage">Select Pill Image:</label>
+            <input type="file"
+                   id="pillImage"
+                   name="image"
+                   accept="image/*"
+                   required
+                   class="form-control">
+          </div>
+          <button type="submit" class="btn btn-primary mt-3 btn-block">
+            <i class="icofont icofont-search-2"></i> Identify Pill
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+
+<section class="features section margin-top">
+<div class="container text-center">
+<h2>Your Trusted Tool for Safe and Accurate Pill Identification</h2>
+<p>We provide innovative solutions to enhance healthcare safety.</p>
+</div>
+</section>
+
+
+<footer class="footer_area">
+<div class="container text-center">
+<p>© 2024 Pill Identification System | All Rights Reserved</p>
+</div>
+</footer>
+
+
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/owl.carousel.js"></script>
+<script src="assets/js/jquery.nice-select.min.js"></script>
+<script src="assets/js/slicknav.min.js"></script>
+<script src="assets/js/datepicker.js"></script>
+<script src="assets/js/magnific-popup.js"></script>
+<script src="assets/js/custom.js"></script>
+
+</body>
+</html>
