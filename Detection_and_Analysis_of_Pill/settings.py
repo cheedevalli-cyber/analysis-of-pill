@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-j0#kdav!ep%1^8kn8y4+q!&$=ig#^w$dl=fr$^eu5cjp0p*7qw'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-j0#kdav!ep%1^8kn8y4+q!&$=ig#^w$dl=fr$^eu5cjp0p*7qw')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
 
 
 # Application definition
@@ -115,7 +115,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-GOOGLE_API_KEY = "AIzaSyBKQZCEK9Rb9zgt3SbDiaFRFaYPg6pgvXQ"
+GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", "AIzaSyBKQZCEK9Rb9zgt3SbDiaFRFaYPg6pgvXQ")
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
