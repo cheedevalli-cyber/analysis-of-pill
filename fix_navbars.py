@@ -52,9 +52,9 @@ def get_navbar(app_type, active_page):
                         </div>
                         <div class="col-lg-8 col-md-9 col-sm-12 col-12">
                             <!-- Main Menu -->
-                            <div class="main-menu d-none d-md-block">
+                            <div class="main-menu">
                                 <nav class="navigation">
-                                    <ul class="nav menu d-flex justify-content-end" style="list-style: none; margin: 0; padding: 0; gap: 20px;">
+                                    <ul class="nav menu">
 {links_html.rstrip()}
                                     </ul>
                                 </nav>
