@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -6,18 +7,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Pill Identification System - Prediction</title>
 
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/nice-select.css">
-<link rel="stylesheet" href="assets/css/font-awesome.min.css">
-<link rel="stylesheet" href="assets/css/icofont.css">
-<link rel="stylesheet" href="assets/css/slicknav.min.css">
-<link rel="stylesheet" href="assets/css/owl-carousel.css">
-<link rel="stylesheet" href="assets/css/datepicker.css">
-<link rel="stylesheet" href="assets/css/animate.min.css">
-<link rel="stylesheet" href="assets/css/magnific-popup.css">
-<link rel="stylesheet" href="assets/css/normalize.css">
-<link rel="stylesheet" href="assets/style.css">
-<link rel="stylesheet" href="assets/css/responsive.css">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/icofont.css' %}">
+<link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl-carousel.css' %}">
+<link rel="stylesheet" href="{% static 'css/datepicker.css' %}">
+<link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+<link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 
 <style>
   /* ---- Pill Result Styles ---- */
@@ -162,16 +163,16 @@
         <div class="navbar-collapse justify-content-end">
           <ul class="navbar-nav" style="display: flex; list-style: none; margin: 0; padding: 0; flex-direction: row; gap: 20px;">
             <li class="nav-item">
-              <a class="nav-link" href="userHome" style="color: #fff; font-weight: 600; text-transform: uppercase;">Home</a>
+              <a class="nav-link" href="{% url 'userHome' %}" style="color: #fff; font-weight: 600; text-transform: uppercase;">Home</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="prediction" style="color: #fff; font-weight: 600; text-transform: uppercase;">Prediction</a>
+              <a class="nav-link" href="{% url 'prediction' %}" style="color: #fff; font-weight: 600; text-transform: uppercase;">Prediction</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="classificationView" style="color: #fff; font-weight: 600; text-transform: uppercase;">Classification View</a>
+              <a class="nav-link" href="{% url 'classificationView' %}" style="color: #fff; font-weight: 600; text-transform: uppercase;">Classification View</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/" style="color: #fff; font-weight: 600; text-transform: uppercase;">Logout</a>
+              <a class="nav-link" href="{% url 'index' %}" style="color: #fff; font-weight: 600; text-transform: uppercase;">Logout</a>
             </li>
           </ul>
         </div>
@@ -186,19 +187,19 @@
 <ul class="navbar-nav ml-auto">
 
 <li class="nav-item">
-<a class="nav-link" href="userHome">Home</a>
+<a class="nav-link" href="{% url 'userHome' %}">Home</a>
 </li>
 
 <li class="nav-item">
-<a class="nav-link" href="prediction">Prediction</a>
+<a class="nav-link" href="{% url 'prediction' %}">Prediction</a>
 </li>
 
 <li class="nav-item">
-<a class="nav-link" href="classificationView">Classification View</a>
+<a class="nav-link" href="{% url 'classificationView' %}">Classification View</a>
 </li>
 
 <li class="nav-item">
-<a class="nav-link" href="/">Logout</a>
+<a class="nav-link" href="{% url 'index' %}">Logout</a>
 </li>
 
 </ul>
@@ -370,7 +371,7 @@
     <div class="col-lg-6 col-md-8">
       <div class="upload-form-card">
         <h5 class="mb-3"><i class="icofont icofont-upload"></i> Upload a Pill Image</h5>
-        <form action="/prediction" method="POST" enctype="multipart/form-data">
+        <form action="{% url 'prediction' %}" method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           <div class="form-group">
             <label for="pillImage">Select Pill Image:</label>
@@ -408,15 +409,15 @@
 </footer>
 
 
-<script src="assets/js/jquery-3.3.1.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/owl.carousel.js"></script>
-<script src="assets/js/jquery.nice-select.min.js"></script>
-<script src="assets/js/slicknav.min.js"></script>
-<script src="assets/js/datepicker.js"></script>
-<script src="assets/js/magnific-popup.js"></script>
-<script src="assets/js/custom.js"></script>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.js' %}"></script>
+<script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+<script src="{% static 'js/slicknav.min.js' %}"></script>
+<script src="{% static 'js/datepicker.js' %}"></script>
+<script src="{% static 'js/magnific-popup.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
 
 </body>
 </html>
