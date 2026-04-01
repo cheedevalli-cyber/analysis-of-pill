@@ -24,9 +24,5 @@ venv.bak/
 .DS_Store
 
 # User generated files / artifacts
-*.png
-*.jpg
-*.jpeg
-*.pdf
 labels.json
 labels.txt
