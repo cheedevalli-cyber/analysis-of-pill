@@ -40,8 +40,8 @@ def get_navbar(app_type, active_page):
         <div class="header_bottom" style="background: #1a1a1a; padding: 15px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
             <div class="container">
                 <div class="inner">
-                    <div class="row" style="display: flex; align-items: center; justify-content: space-between;">
-                        <div class="col-lg-4 col-md-3 col-12">
+                    <div class="row align-items-center">
+                        <div class="col-lg-4 col-md-3 col-sm-12 col-12">
                             <!-- Logo / Brand -->
                             <div class="navbar-brand">
                                 <h2 style="color: #00e5ff; font-size: 1.6rem; font-weight: 700; margin: 0; letter-spacing: 1px;">{brand_text}</h2>
@@ -50,11 +50,11 @@ def get_navbar(app_type, active_page):
                             <div class="mobile-nav"></div>
                             <!-- End Mobile Nav -->
                         </div>
-                        <div class="col-lg-8 col-md-9 col-12">
+                        <div class="col-lg-8 col-md-9 col-sm-12 col-12">
                             <!-- Main Menu -->
-                            <div class="main-menu" style="display: flex; justify-content: flex-end;">
+                            <div class="main-menu d-none d-md-block">
                                 <nav class="navigation">
-                                    <ul class="nav menu" style="display: flex; list-style: none; margin: 0; padding: 0; gap: 20px;">
+                                    <ul class="nav menu d-flex justify-content-end" style="list-style: none; margin: 0; padding: 0; gap: 20px;">
 {links_html.rstrip()}
                                     </ul>
                                 </nav>

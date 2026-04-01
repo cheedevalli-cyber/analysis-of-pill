@@ -30,9 +30,9 @@ def update_template(file_path):
             modified = True
             
     # 3. Fix pill-identification image
-    pill_pattern = re.compile(r"pill-identification1\.jpg\.jpg")
+    pill_pattern = re.compile(r"pill-1\.jpg")
     if pill_pattern.search(content):
-        content = pill_pattern.sub("pill-1.jpg", content)
+        content = pill_pattern.sub("pill-identification1.jpg", content)
         modified = True
 
     # 4. Wrap all raw image sources in static tag
