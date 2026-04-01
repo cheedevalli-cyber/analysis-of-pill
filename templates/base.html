@@ -58,35 +58,35 @@
             </div>
         </div>
         <br>
-        <div class="header_bottom" id="header_bottom">
-            <div class="container-fluid">
-                <nav class="navbar navbar-expand-lg custom_nav-container">
-                    <a class="navbar-brand">
-                        <span>
-                            <h1>Reliable Pill Identification</h1>
-                        </span>
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{% url 'index' %}">Home </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'loginForm' %}">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'userRegisterForm' %}">Register</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#why-choose section">About Us</a>
-                            </li>
-                        </ul>
+                <!-- Bottom Header / Menu with Black Background -->
+        <div class="header_bottom" style="background: #1a1a1a; padding: 15px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            <div class="container">
+                <div class="inner">
+                    <div class="row" style="display: flex; align-items: center; justify-content: space-between;">
+                        <div class="col-lg-4 col-md-3 col-12">
+                            <!-- Logo / Brand -->
+                            <div class="navbar-brand">
+                                <h2 style="color: #00e5ff; font-size: 1.6rem; font-weight: 700; margin: 0; letter-spacing: 1px;">Reliable & Accurate Identification</h2>
+                            </div>
+                            <!-- Mobile Nav -->
+                            <div class="mobile-nav"></div>
+                            <!-- End Mobile Nav -->
+                        </div>
+                        <div class="col-lg-8 col-md-9 col-12">
+                            <!-- Main Menu -->
+                            <div class="main-menu" style="display: flex; justify-content: flex-end;">
+                                <nav class="navigation">
+                                    <ul class="nav menu" style="display: flex; list-style: none; margin: 0; padding: 0; gap: 20px;">
+                                        <li class="active"><a href="{% url 'index' %}" style="color: #fff; font-weight: 600; text-transform: uppercase;">Home</a></li>
+                                        <li><a href="{% url 'loginForm' %}" style="color: #fff; font-weight: 600; text-transform: uppercase;">Login</a></li>
+                                        <li><a href="{% url 'userRegisterForm' %}" style="color: #fff; font-weight: 600; text-transform: uppercase;">Register</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <!--/ End Main Menu -->
+                        </div>
                     </div>
-                </nav>
+                </div>
             </div>
         </div>
     </header>
