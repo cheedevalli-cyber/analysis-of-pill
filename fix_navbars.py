@@ -37,6 +37,17 @@ def get_navbar(app_type, active_page):
         links_html += f'                                        <li{active_class}><a href="{url}" style="color: #fff; font-weight: 600; text-transform: uppercase;">{name}</a></li>\n'
 
     return f"""        <!-- Bottom Header / Menu with Black Background -->
+        <style>
+            @media (min-width: 768px) {{
+                .custom-desktop-menu {{ display: flex !important; list-style: none; margin: 0; padding: 0; gap: 20px; justify-content: flex-end; align-items: center; }}
+                .custom-main-menu-wrapper {{ display: block !important; }}
+                .mobile-nav-wrapper {{ display: none !important; }}
+            }}
+            @media (max-width: 767px) {{
+                .custom-main-menu-wrapper {{ display: none !important; }}
+                .mobile-nav-wrapper {{ display: block !important; }}
+            }}
+        </style>
         <div class="header_bottom" style="background: #1a1a1a; padding: 15px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
             <div class="container">
                 <div class="inner">
@@ -47,14 +58,14 @@ def get_navbar(app_type, active_page):
                                 <h2 style="color: #00e5ff; font-size: 1.6rem; font-weight: 700; margin: 0; letter-spacing: 1px;">{brand_text}</h2>
                             </div>
                             <!-- Mobile Nav -->
-                            <div class="mobile-nav"></div>
+                            <div class="mobile-nav mobile-nav-wrapper"></div>
                             <!-- End Mobile Nav -->
                         </div>
                         <div class="col-lg-8 col-md-9 col-sm-12 col-12">
                             <!-- Main Menu -->
-                            <div class="main-menu">
+                            <div class="main-menu custom-main-menu-wrapper">
                                 <nav class="navigation">
-                                    <ul class="nav menu">
+                                    <ul class="nav menu custom-desktop-menu">
 {links_html.rstrip()}
                                     </ul>
                                 </nav>

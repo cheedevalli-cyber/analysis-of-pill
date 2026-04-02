@@ -61,6 +61,18 @@
                 <!-- Bottom Header / Menu with Black Background -->
                 <!-- Bottom Header / Menu with Black Background -->
                 <!-- Bottom Header / Menu with Black Background -->
+                <!-- Bottom Header / Menu with Black Background -->
+        <style>
+            @media (min-width: 768px) {
+                .custom-desktop-menu { display: flex !important; list-style: none; margin: 0; padding: 0; gap: 20px; justify-content: flex-end; align-items: center; }
+                .custom-main-menu-wrapper { display: block !important; }
+                .mobile-nav-wrapper { display: none !important; }
+            }
+            @media (max-width: 767px) {
+                .custom-main-menu-wrapper { display: none !important; }
+                .mobile-nav-wrapper { display: block !important; }
+            }
+        </style>
         <div class="header_bottom" style="background: #1a1a1a; padding: 15px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
             <div class="container">
                 <div class="inner">
@@ -71,14 +83,14 @@
                                 <h2 style="color: #00e5ff; font-size: 1.6rem; font-weight: 700; margin: 0; letter-spacing: 1px;">Reliable Identification</h2>
                             </div>
                             <!-- Mobile Nav -->
-                            <div class="mobile-nav"></div>
+                            <div class="mobile-nav mobile-nav-wrapper"></div>
                             <!-- End Mobile Nav -->
                         </div>
                         <div class="col-lg-8 col-md-9 col-sm-12 col-12">
                             <!-- Main Menu -->
-                            <div class="main-menu">
+                            <div class="main-menu custom-main-menu-wrapper">
                                 <nav class="navigation">
-                                    <ul class="nav menu">
+                                    <ul class="nav menu custom-desktop-menu">
                                         <li class="active"><a href="{% url 'adminHome' %}" style="color: #fff; font-weight: 600; text-transform: uppercase;">Home</a></li>
                                         <li><a href="{% url 'userDetails' %}" style="color: #fff; font-weight: 600; text-transform: uppercase;">User Details</a></li>
                                         <li><a href="{% url 'adminclassificationView' %}" style="color: #fff; font-weight: 600; text-transform: uppercase;">Classification View</a></li>
