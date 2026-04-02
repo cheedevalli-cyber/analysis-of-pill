@@ -120,9 +120,14 @@ GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", "AIzaSyBKQZCEK9Rb9zgt3SbDiaFRF
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 STATIC_URL = '/assets/'
-STATICFILES_DIRS=[os.path.join(BASE_DIR,'templates/assets')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'templates/assets')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+    },
+}
 
 # settings.py
 

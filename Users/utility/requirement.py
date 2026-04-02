@@ -1,20 +1,6 @@
 import os
-import numpy as np
-import pandas as pd
-import matplotlib
-matplotlib.use('Agg')   # must be before pyplot
-import matplotlib.pyplot as plt
-import seaborn as sns
 from pathlib import Path
 from PIL import Image
-import tensorflow as tf
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing.image import load_img
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, accuracy_score
-from tensorflow.keras.initializers import glorot_uniform
-from tensorflow.keras.layers import Dropout, Input, Dense, BatchNormalization, Flatten, Conv2D, MaxPooling2D
-from tensorflow.keras.models import Model
 from django.conf import settings
 
 ##########################
@@ -22,6 +8,7 @@ from django.conf import settings
 ##########################
 
 def load_data(train_csv_path, test_csv_path):
+    import pandas as pd
     """Load the training and testing datasets from CSV files."""
     train_df = pd.read_csv(train_csv_path)
     test_df = pd.read_csv(test_csv_path)
@@ -31,6 +18,10 @@ def load_data(train_csv_path, test_csv_path):
     return train_df, test_df
 
 def check_data_balance(train_df):
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    import seaborn as sns
     sns.histplot(train_df['label'])
     plt.title("Distribution of Training Labels")
     plt.savefig("label_distribution.png")
@@ -38,6 +29,8 @@ def check_data_balance(train_df):
 
 
 def preprocess_images(file_paths, base_path, target_size=(64, 64)):
+    import numpy as np
+    from tensorflow.keras.preprocessing.image import load_img
     """Preprocess images by loading and resizing them."""
     images = []
     for file in file_paths:
@@ -53,6 +46,9 @@ def preprocess_images(file_paths, base_path, target_size=(64, 64)):
 ##########################
 
 def build_model(input_shape, num_classes):
+    from tensorflow.keras.initializers import glorot_uniform
+    from tensorflow.keras.layers import Dropout, Input, Dense, BatchNormalization, Flatten, Conv2D, MaxPooling2D
+    from tensorflow.keras.models import Model
     inputs = Input(input_shape)
     X = Conv2D(64, (3, 3), activation='relu', kernel_initializer=glorot_uniform(seed=0))(inputs)
     X = BatchNormalization(axis=3)(X)
@@ -80,6 +76,9 @@ def build_model(input_shape, num_classes):
     return model
 
 def plot_history(history):
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
     plt.plot(history.history['accuracy'])
     plt.plot(history.history['val_accuracy'])
     plt.title('Model Accuracy')
@@ -96,6 +95,8 @@ def plot_history(history):
 
 
 def evaluate_model(model, x_test, y_test):
+    import numpy as np
+    from sklearn.metrics import classification_report, accuracy_score
     y_pred = np.argmax(model.predict(x_test), axis=-1)
     pill_report = classification_report(y_test, y_pred)
     pill_accuracy = accuracy_score(y_test, y_pred)
@@ -108,6 +109,8 @@ def evaluate_model(model, x_test, y_test):
 ##########################
 
 def main():
+    import numpy as np
+    from sklearn.model_selection import train_test_split
     """Train model and save it to MEDIA_ROOT."""
     # Paths inside MEDIA_ROOT
     pilldata_dir = Path(settings.MEDIA_ROOT) / 'pilldata'
@@ -147,6 +150,8 @@ def main():
 ##########################
 
 def preprocess_image(image_path):
+    import numpy as np
+    from tensorflow.keras.preprocessing.image import load_img
     """Preprocess a single image for prediction."""
     img = load_img(image_path, color_mode='grayscale')
     img = img.resize((64, 64), Image.Resampling.LANCZOS)
@@ -155,6 +160,7 @@ def preprocess_image(image_path):
     return img
 
 def predict_pill(pred):
+    import numpy as np
     pred_class = int(np.argmax(pred, axis=-1)[0])
     label_map = {
         0: 'Alaxan', 1: 'Bactidol', 2: 'Bioflu', 3: 'Biogesic', 4: 'DayZinc',
@@ -168,6 +174,8 @@ _model_cache = None
 def predictions(image_path):
     """Predict a pill class using the saved model in MEDIA_ROOT."""
     global _model_cache
+    import numpy as np
+    from tensorflow.keras.models import load_model
 
     if _model_cache is None:
         pilldata_dir = Path(settings.MEDIA_ROOT) / 'pilldata'
@@ -184,8 +192,8 @@ def predictions(image_path):
     val = _model_cache.predict(processed_image)
     predicted_label = predict_pill(val)
     
-    import cv2
     try:
+        import cv2
         img_str = str(image_path)
         img = cv2.imread(img_str)
         if img is not None:
