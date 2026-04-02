@@ -1,0 +1,103 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="Site keywords here">
+    <meta name="description" content="">
+    <meta name='copyright' content=''>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Title -->
+    <title>Update User - Pill Identification System</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/favicon.png' %}">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/icofont.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+</head>
+<body>
+    <!-- Header Area -->
+    <header class="header_section" style="position: relative; width: 100%;">
+        <div class="header_top" style="background: #00bfff; padding: 35px 0; border-bottom: 4px solid #0099cc;">
+            <div class="container text-center">
+                <h1 style="margin: 0; color: #fff; font-size: 2.8rem; font-weight: 800; text-transform: uppercase;">Pill Identification System</h1>
+            </div>
+        </div>
+        <div class="header_bottom" style="background: #1a1a1a; padding: 15px 0;">
+            <div class="container">
+                <div class="inner">
+                    <nav class="navigation">
+                        <ul class="nav menu" style="display: flex; list-style: none; gap: 20px;">
+                            <li><a href="{% url 'adminHome' %}" style="color: #fff;">Home</a></li>
+                            <li class="active"><a href="{% url 'userDetails' %}" style="color: #fff;">Users</a></li>
+                            <li><a href="{% url 'adminclassificationView' %}" style="color: #fff;">Classification</a></li>
+                            <li><a href="{% url 'index' %}" style="color: #fff;">Logout</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Update Form -->
+    <section class="section" style="padding: 60px 0;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section-title text-center">
+                        <h2>Update User: {{ user.name }}</h2>
+                    </div>
+                    <form method="post" action="{% url 'updateUser' %}?loginid={{ user.loginid }}" style="background: #f9f9f9; padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.1);">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" name="name" class="form-control" value="{{ user.name }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" name="email" class="form-control" value="{{ user.email }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Mobile</label>
+                            <input type="text" name="mobile" class="form-control" value="{{ user.mobile }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Locality</label>
+                            <input type="text" name="locality" class="form-control" value="{{ user.locality }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>State</label>
+                            <input type="text" name="state" class="form-control" value="{{ user.state }}" required>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary" style="padding: 10px 40px; border-radius: 30px;">Update User</button>
+                            <a href="{% url 'userDetails' %}" class="btn btn-secondary" style="padding: 10px 40px; border-radius: 30px; margin-left: 10px;">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Area -->
+    <footer class="footer_area" style="padding: 40px 0; background: #1a1a1a; color: #fff;">
+        <div class="container text-center">
+            <p>© 2024 Pill Identification System | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

@@ -47,7 +47,8 @@ def userRegister(request):
     return render(request, 'register.html')
 
 def userHome(request):
-    return render(request, 'users/userHome.html')
+    username = request.session.get('name', 'User')
+    return render(request, 'users/userHome.html', {'username': username})
 
 import os
 from django.shortcuts import render
@@ -277,9 +278,10 @@ Respond strictly in this numbered format, one line per section:
             'uploaded_file_url': uploaded_file_url,
             'pill_info': pill_info,
             'pill_data': pill_data,
+            'username': request.session.get('name', 'User')
         })
 
-    return render(request, 'users/predictionForm.html')
+    return render(request, 'users/predictionForm.html', {'username': request.session.get('name', 'User')})
 
 
 # imported dynamically inside prediction()
@@ -304,16 +306,17 @@ def classificationView(request):
     ]
 
     plots = {
-        "accuracy_plot": "/media/pilldata/plots/accuracy_plot.png",
-        "data_balance": "/media/pilldata/plots/data_balance.png",
-        "loss_plot": "/media/pilldata/plots/loss_plot.png",
+        "accuracy_plot": "/media/pilldata/accuracy.png",
+        "data_balance": "/media/pilldata/label_distribution.png",
+        "loss_plot": "/media/pilldata/loss.png",
     }
 
     context = {
         "accuracy": accuracy,
         "error": 100 - accuracy,  # <-- calculate here
         "report": report,
-        "plots": plots
+        "plots": plots,
+        "username": request.session.get('name', 'User')
     }
 
     return render(request, "users/classificationView.html", context)

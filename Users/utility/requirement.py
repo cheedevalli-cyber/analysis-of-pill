@@ -17,14 +17,14 @@ def load_data(train_csv_path, test_csv_path):
     test_df['label'] = pd.Categorical(test_df['label']).codes
     return train_df, test_df
 
-def check_data_balance(train_df):
+def check_data_balance(train_df, base_path):
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
     import seaborn as sns
     sns.histplot(train_df['label'])
     plt.title("Distribution of Training Labels")
-    plt.savefig("label_distribution.png")
+    plt.savefig(base_path / "label_distribution.png")
     plt.close()
 
 
@@ -75,7 +75,7 @@ def build_model(input_shape, num_classes):
     
     return model
 
-def plot_history(history):
+def plot_history(history, base_path):
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
@@ -83,14 +83,14 @@ def plot_history(history):
     plt.plot(history.history['val_accuracy'])
     plt.title('Model Accuracy')
     plt.legend(['train', 'validation'])
-    plt.savefig("accuracy.png")
+    plt.savefig(base_path / "accuracy.png")
     plt.close()
 
     plt.plot(history.history['loss'])
     plt.plot(history.history['val_loss'])
     plt.title('Model Loss')
     plt.legend(['train', 'validation'])
-    plt.savefig("loss.png")
+    plt.savefig(base_path / "loss.png")
     plt.close()
 
 
@@ -121,7 +121,7 @@ def main():
 
     # Load data
     train_df, test_df = load_data(train_csv_path, test_csv_path)
-    check_data_balance(train_df)
+    check_data_balance(train_df, pilldata_dir)
 
     # Preprocess images
     x_train = preprocess_images(train_df['filename'], train_path)
@@ -139,11 +139,16 @@ def main():
 
     # Save model
     model.save(model_path)
-    plot_history(history)
+    plot_history(history, pilldata_dir)
 
     # Evaluate
-    pill_accuracy = evaluate_model(model, x_test, y_test)
-    return pill_accuracy
+    y_pred = np.argmax(model.predict(x_test), axis=-1)
+    from sklearn.metrics import precision_score, recall_score, accuracy_score
+    pill_accuracy = accuracy_score(y_test, y_pred)
+    pill_precision = precision_score(y_test, y_pred, average='weighted')
+    pill_recall = recall_score(y_test, y_pred, average='weighted')
+    
+    return pill_accuracy, pill_precision, pill_recall
 
 ##########################
 # Prediction Functions

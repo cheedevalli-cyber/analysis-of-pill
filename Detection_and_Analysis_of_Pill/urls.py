@@ -31,16 +31,18 @@ urlpatterns = [
     path('userRegisterForm',mv.userRegisterForm,name='userRegisterForm'),
 
     #adminUrls
-    path('adminHome',av.adminHome,name='adminHome'),
-    path('userDetails',av.userDetails,name='userDetails'),
-    path('activateUser',av.activateUser,name='activateUser'),
-    path('adminclassificationView',av.adminclassificationView,name='adminclassificationView'),
+    path('adminHome/',av.adminHome,name='adminHome'),
+    path('userDetails/',av.userDetails,name='userDetails'),
+    path('activateUser/',av.activateUser,name='activateUser'),
+    path('adminClassification/',av.adminclassificationView,name='adminclassificationView'),
+    path('deleteUser/',av.deleteUser,name='deleteUser'),
+    path('updateUser/',av.updateUser,name='updateUser'),
 
     #userurls
-    path('userRegister',uv.userRegister,name='userRegister'),
-    path('userHome',uv.userHome,name='userHome'),
-    path('prediction',uv.prediction,name='prediction'),
-    path('classificationView',uv.classificationView,name='classificationView'),
+    path('userRegister/',uv.userRegister,name='userRegister'),
+    path('userHome/',uv.userHome,name='userHome'),
+    path('prediction/',uv.prediction,name='prediction'),
+    path('classificationView/',uv.classificationView,name='classificationView'),
 
 
     

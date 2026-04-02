@@ -16,13 +16,15 @@ def loginCheck(request):
         
         # Check Admin Login
         if loginid=='valli' and password=='valli@2000':
-            return render(request,'admin/adminHome.html')
+            request.session['name'] = 'Admin'
+            return render(request,'admin/adminHome.html', {'username': 'Admin'})
         
         # Check User Login
         try:
             user = UserRegisteredTable.objects.get(loginid=loginid, password=password)
             if user.status == 'activated':
-                return render(request,'users/userHome.html')
+                request.session['name'] = user.name
+                return render(request,'users/userHome.html', {'username': user.name})
             else:
                 messages.error(request, 'Account Status Not Activated')
                 return render(request,'login.html')

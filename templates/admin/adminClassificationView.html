@@ -121,8 +121,9 @@
                     <div class="row align-items-center">
                         <div class="col-12 nav-header-flex">
                             <!-- Logo / Brand -->
-                            <div class="navbar-brand">
+                            <div class="navbar-brand d-flex align-items-center">
                                 <h2 style="color: #00e5ff; font-size: 1.4rem; font-weight: 700; margin: 0; letter-spacing: 1px;">Reliable Identification</h2>
+                                <span class="ml-4 d-none d-lg-inline" style="color: #fff; font-weight: 500; font-size: 1rem; border-left: 2px solid #333; padding-left: 20px;">Hello, <span style="color: #00e5ff;">{{ username }}</span></span>
                             </div>
                             
                             <!-- Main Menu (Desktop) -->
@@ -172,97 +173,95 @@
 <section class="features section margin-top">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12 text-center mb-5">
                 <div class="section-title">
-                    <h2>Your Trusted Partner for Safe and Accurate Pill Identification</h2>
-                    <img src="{% static 'img/image.jpeg' %}" alt="#">
-                    <p>We are dedicated to providing innovative solutions that enhance healthcare safety and accuracy in medication management.</p>
+                    <h2 style="font-weight: 700; color: #1a1a1a;">Model Overall Performance</h2>
                 </div>
             </div>
         </div>
-        <div class="row">
+
+        <div class="row justify-content-center">
             <div class="col-lg-4 col-12">
-                <div class="single-features">
-                    <div class="single-icon">
-                        <i class="icofont icofont-check"></i>
+                <div class="single-features text-center shadow-lg rounded" style="padding: 40px 20px;">
+                    <div class="single-icon mb-3">
+                        <i class="icofont icofont-chart-growth" style="font-size: 3rem; color: #00e5ff;"></i>
                     </div>
-                    <h3>Accuracy</h3>
-                    <p>{{ accuracy}}%</p> <!-- Display Accuracy -->
-                </div>
-            </div>
-            <div class="col-lg-4 col-12">
-                <div class="single-features">
-                    <div class="single-icon">
-                        <i class="icofont icofont-check"></i>
-                    </div>
-                    <h3>Precision</h3>
-                    <p>{{ precision }}%</p> <!-- Display Precision -->
-                </div>
-            </div>
-            <div class="col-lg-4 col-12">
-                <div class="single-features last">
-                    <div class="single-icon">
-                        <i class="icofont icofont-check"></i>
-                    </div>
-                    <h3>Recall</h3>
-                    <p>{{ recall}}%</p> <!-- Display Recall -->
+                    <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Model Accuracy</h3>
+                    <p style="font-size: 2.5rem; font-weight: 800; color: #0066cc; margin:0;">{{ accuracy }}%</p>
+                    <small class="text-muted" style="font-weight: 600;">Error Rate: {{ error|floatformat:1 }}%</small>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!--/ End Features -->
 
-    
-    <!-- Features Section -->
-    <section class="features section margin-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>Your Trusted Tool for Safe and Accurate Pill Identification</h2>
-                        <img src="{% static 'img/image.jpeg' %}" alt="#">
-                        <p>We are committed to providing innovative solutions that enhance healthcare safety and accuracy in medication management.</p>
-                    </div>
-                </div>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="section-title text-center mb-5">
+                <h2 style="font-weight: 700;">Classification Report</h2>
+                <p>Detailed performance metrics for each pill category</p>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-12">
-                    <!-- Start Single Feature -->
-                    <div class="single-features">
-                        <div class="single-icon">
-                            <i class="icofont icofont-pill"></i>
-                        </div>
-                        <h3>Accurate Pill Identification</h3>
-                        <p>Our system uses advanced image processing to accurately identify pills based on color, shape, and imprint, minimizing errors.</p>
-                    </div>
-                    <!-- End Single Feature -->
-                </div>
-                <div class="col-lg-4 col-12">
-                    <!-- Start Single Feature -->
-                    <div class="single-features">
-                        <div class="single-icon">
-                            <i class="icofont icofont-computer"></i>
-                        </div>
-                        <h3>Real-Time Image Analysis</h3>
-                        <p>Get instant results through real-time analysis, powered by deep learning algorithms for fast and reliable pill recognition.</p>
-                    </div>
-                    <!-- End Single Feature -->
-                </div>
-                <div class="col-lg-4 col-12">
-                    <!-- Start Single Feature -->
-                    <div class="single-features last">
-                        <div class="single-icon">
-                            <i class="icofont icofont-heart-beat-alt"></i>
-                        </div>
-                        <h3>Enhanced Patient Safety</h3>
-                        <p>Our system helps healthcare providers and consumers make safe medication decisions, supporting accurate dispensing practices.</p>
-                    </div>
-                    <!-- End Single Feature -->
-                </div>
+
+            <div class="table-responsive rounded shadow-sm">
+                <table class="table table-bordered table-striped text-center mb-0" style="background: white;">
+                    <thead style="background: #1a1a1a; color: #fff;">
+                        <tr>
+                            <th style="padding: 15px;">Class Name</th>
+                            <th style="padding: 15px;">Precision</th>
+                            <th style="padding: 15px;">Recall</th>
+                            <th style="padding: 15px;">F1-Score</th>
+                            <th style="padding: 15px;">Support</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in report %}
+                        <tr>
+                            <td class="font-weight-bold">{{ row.class }}</td>
+                            <td>{{ row.precision }}</td>
+                            <td>{{ row.recall }}</td>
+                            <td>{{ row.f1 }}</td>
+                            <td>{{ row.support }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
-    </section>
+    </div>
+</div>
+
+<div class="container mt-5 pt-5 mb-5">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="section-title text-center mb-5">
+                <h2 style="font-weight: 700;">Performance Visualizations</h2>
+                <p>Training trends and dataset distribution analysis</p>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-12 text-center mb-4">
+            <div class="p-3 bg-white shadow rounded border">
+                <h4 class="mb-3" style="color: #0066cc;">Accuracy Curve</h4>
+                <img src="{{ plots.accuracy_plot }}" class="img-fluid rounded" alt="Accuracy Chart" onerror="this.src='https://via.placeholder.com/400x300?text=Accuracy+Plot+Not+Found'">
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-12 text-center mb-4">
+            <div class="p-3 bg-white shadow rounded border">
+                <h4 class="mb-3" style="color: #0066cc;">Loss Curve</h4>
+                <img src="{{ plots.loss_plot }}" class="img-fluid rounded" alt="Loss Chart" onerror="this.src='https://via.placeholder.com/400x300?text=Loss+Plot+Not+Found'">
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-12 text-center mb-4">
+            <div class="p-3 bg-white shadow rounded border">
+                <h4 class="mb-3" style="color: #0066cc;">Data Distribution</h4>
+                <img src="{{ plots.data_balance }}" class="img-fluid rounded" alt="Data Balance Chart" onerror="this.src='https://via.placeholder.com/400x300?text=Data+Balance+Plot+Not+Found'">
+            </div>
+        </div>
+    </div>
+</div>
     <!-- End Features Section -->
 
     <!-- Footer Area -->

@@ -121,8 +121,9 @@
                     <div class="row align-items-center">
                         <div class="col-12 nav-header-flex">
                             <!-- Logo / Brand -->
-                            <div class="navbar-brand">
+                            <div class="navbar-brand d-flex align-items-center">
                                 <h2 style="color: #00e5ff; font-size: 1.4rem; font-weight: 700; margin: 0; letter-spacing: 1px;">Reliable Identification</h2>
+                                <span class="ml-4 d-none d-lg-inline" style="color: #fff; font-weight: 500; font-size: 1rem; border-left: 2px solid #333; padding-left: 20px;">Hello, <span style="color: #00e5ff;">{{ username }}</span></span>
                             </div>
                             
                             <!-- Main Menu (Desktop) -->
@@ -168,49 +169,93 @@
     <!-- End Header Area -->
     
     <!-- Slider Area -->
-    <section class="user-details-table margin-top" id="user-details-table">
+    <section class="user-details-table margin-top" id="user-details-table" style="padding-bottom: 50px;">
         <div class="container">
-            <h2 class="section-title">User Details</h2>
-            <table class="user-details-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Login ID</th>
-                        <th>Email</th>
-                        <th>Mobile</th>
-                        <th>Locality</th>
-                        <th>State</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for user in user %}
-                    <tr>
-                        <td>{{user.id}}</td>
-                        <td>{{ user.name }}</td>
-                        <td>{{ user.loginid }}</td>
-                        <td>{{ user.email }}</td>
-                        <td>{{ user.mobile }}</td>
-                        <td>{{ user.locality }}</td>
-                        <td>{{ user.state }}</td>
-                        <td>{{ user.status }}</td>
-                        <td>
-                            {% if user.status == "Waiting" %}
-                                 <a href="{% url 'activateUser' %}?loginid={{user.loginid}}" class="btn btn-success">Activate</a>
-                            {% else %}
-                                <span class="activated-label">Activated</span>
-                            {% endif %}
-                        </td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="8" class="text-center">No users found.</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="row mb-5">
+                <!-- Total Users Card -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card text-center shadow border-0" style="background: linear-gradient(135deg, #00c6ff, #0072ff); border-radius: 15px;">
+                        <div class="card-body py-5 text-white">
+                            <i class="icofont icofont-users-alt-5 mb-3" style="font-size: 3rem;"></i>
+                            <h4 class="font-weight-bold" style="font-size: 1.5rem;">Total Users</h4>
+                            <p class="display-4 font-weight-bold mt-2" style="font-size: 3.5rem;">{{ user_count }}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Active Users Card -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card text-center shadow border-0" style="background: linear-gradient(135deg, #28a745, #1e7e34); border-radius: 15px;">
+                        <div class="card-body py-5 text-white">
+                            <i class="icofont icofont-checked mb-3" style="font-size: 3rem;"></i>
+                            <h4 class="font-weight-bold" style="font-size: 1.5rem;">Active Users</h4>
+                            <p class="display-4 font-weight-bold mt-2" style="font-size: 3.5rem;">{{ active_count }}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Inactive Users Card -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card text-center shadow border-0" style="background: linear-gradient(135deg, #ffc107, #d39e00); border-radius: 15px;">
+                        <div class="card-body py-5 text-white">
+                            <i class="icofont icofont-clock-time mb-3" style="font-size: 3rem;"></i>
+                            <h4 class="font-weight-bold" style="font-size: 1.5rem;">Waiting / Inactive</h4>
+                            <p class="display-4 font-weight-bold mt-2" style="font-size: 3.5rem;">{{ inactive_count }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row align-items-center mb-4 mt-5">
+                <div class="col-md-6">
+                    <h2 class="section-title" style="margin:0; font-weight: 700; color: #333;">Detailed User Records</h2>
+                </div>
+            </div>
+            
+            <div class="table-responsive" style="max-height: 600px; overflow-y: auto; border: 1px solid #ddd; border-radius: 8px;">
+                <table class="user-details-table table table-hover" style="margin-bottom: 0;">
+                    <thead style="position: sticky; top: 0; z-index: 10;">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Login ID</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th>Locality</th>
+                            <th>State</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for u in user %}
+                        <tr>
+                            <td>{{u.id}}</td>
+                            <td>{{ u.name }}</td>
+                            <td>{{ u.loginid }}</td>
+                            <td>{{ u.email }}</td>
+                            <td>{{ u.mobile }}</td>
+                            <td>{{ u.locality }}</td>
+                            <td>{{ u.state }}</td>
+                            <td>{{ u.status }}</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    {% if u.status == "Waiting" %}
+                                         <a href="{% url 'activateUser' %}?loginid={{u.loginid}}" class="btn btn-success btn-sm">Activate</a>
+                                    {% else %}
+                                        <span class="badge badge-success" style="padding: 10px; margin-right: 5px;">Activated</span>
+                                    {% endif %}
+                                    <a href="{% url 'updateUser' %}?loginid={{u.loginid}}" class="btn btn-primary btn-sm" style="margin-left: 5px;">Update</a>
+                                    <a href="{% url 'deleteUser' %}?loginid={{u.loginid}}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?')" style="margin-left: 5px;">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="9" class="text-center">No users found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
     

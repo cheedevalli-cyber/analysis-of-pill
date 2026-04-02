@@ -189,13 +189,35 @@
                         <div class="form-group row">
                             <label for="password" class="col-sm-2 col-form-label">Password</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter a password" required>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter a password" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="togglePassword" style="cursor: pointer; background: #fff; border-left: none;">
+                                            <i class="fa fa-eye" id="eyeIcon"></i>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     
                         <button type="submit" class="btn btn-primary btn-block">LOGIN</button>
                     </form>
                     
+                    <script>
+                        document.getElementById('togglePassword').addEventListener('click', function (e) {
+                            const password = document.getElementById('password');
+                            const eyeIcon = document.getElementById('eyeIcon');
+                            if (password.type === 'password') {
+                                password.type = 'text';
+                                eyeIcon.classList.remove('fa-eye');
+                                eyeIcon.classList.add('fa-eye-slash');
+                            } else {
+                                password.type = 'password';
+                                eyeIcon.classList.remove('fa-eye-slash');
+                                eyeIcon.classList.add('fa-eye');
+                            }
+                        });
+                    </script>
                     
                 </div>
             </br>
