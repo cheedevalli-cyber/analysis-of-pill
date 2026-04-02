@@ -92,6 +92,9 @@ def prediction(request):
         original_file_url = fs.url(original_filename)
 
         print(f"Uploaded file path: {file_path}")
+        
+        # Load heavy ML libs only on demand
+        from Users.utility.requirement import predictions
 
         # Call your model's prediction function here (this modifies the file at file_path)
         predicted_label = predictions(file_path)
@@ -279,8 +282,7 @@ Respond strictly in this numbered format, one line per section:
     return render(request, 'users/predictionForm.html')
 
 
-from Users.utility.requirement  import main, predictions 
-# def classificationView(request):
+# imported dynamically inside prediction()
 #     accuracy=main()
 #     return render(request,'users/classificationView.html',context={'accuracy':accuracy})
 

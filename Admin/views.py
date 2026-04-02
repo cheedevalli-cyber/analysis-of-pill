@@ -21,10 +21,8 @@ def activateUser(request):
     userr=UserRegisteredTable.objects.all()
     return render(request,'admin/userDetails.html',{'user':userr})
 
-#import of main function from utility/users
-from Users.utility.requirement import main
-
 def adminclassificationView(request):
+    from Users.utility.requirement import main
     accuracy,precision,recall=main()
     return render(request,'users/classificationView.html',context={'accurecy':accuracy,'precision':precision,'recall':recall})
 
