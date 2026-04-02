@@ -71,21 +71,59 @@
                 .mobile-nav-wrapper { display: block !important; }
             }
         </style>
+                <!-- Responsive Header Bottom -->
+        <style>
+            /* Desktop Menu Styles */
+            @media (min-width: 768px) {
+                .custom-desktop-menu { display: flex !important; list-style: none; margin: 0; padding: 0; gap: 20px; justify-content: flex-end; align-items: center; }
+                .custom-main-menu-wrapper { display: block !important; margin-left: auto; }
+                .hamburger-btn { display: none !important; }
+                .mobile-dropdown-menu { display: none !important; }
+                .nav-header-flex { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+            }
+            /* Mobile Menu Styles */
+            @media (max-width: 767px) {
+                .custom-main-menu-wrapper { display: none !important; }
+                .nav-header-flex { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+                .hamburger-btn { 
+                    display: block !important; 
+                    background: none; 
+                    border: none; 
+                    color: #00e5ff; 
+                    font-size: 30px; 
+                    cursor: pointer;
+                    padding: 5px 10px;
+                    border-radius: 4px;
+                    border: 1px solid #00e5ff;
+                }
+                .hamburger-btn:hover { background: rgba(0, 229, 255, 0.1); }
+                .mobile-dropdown-menu {
+                    display: none;
+                    flex-direction: column;
+                    background: #222;
+                    width: 100%;
+                    padding: 10px 0;
+                    margin-top: 15px;
+                    border-radius: 5px;
+                }
+                .mobile-dropdown-menu.show { display: flex !important; }
+                .mobile-dropdown-menu li { list-style: none; text-align: center; padding: 12px 0; border-bottom: 1px solid #333; }
+                .mobile-dropdown-menu li:last-child { border-bottom: none; }
+                .mobile-dropdown-menu li a { color: #fff; font-weight: 600; text-transform: uppercase; display: block; text-decoration: none; letter-spacing: 1px; }
+                .mobile-dropdown-menu li a:hover { color: #00e5ff; }
+            }
+        </style>
         <div class="header_bottom" style="background: #1a1a1a; padding: 15px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
             <div class="container">
                 <div class="inner">
                     <div class="row align-items-center">
-                        <div class="col-lg-4 col-md-3 col-sm-12 col-12">
+                        <div class="col-12 nav-header-flex">
                             <!-- Logo / Brand -->
                             <div class="navbar-brand">
-                                <h2 style="color: #00e5ff; font-size: 1.6rem; font-weight: 700; margin: 0; letter-spacing: 1px;">Reliable & Accurate Identification</h2>
+                                <h2 style="color: #00e5ff; font-size: 1.4rem; font-weight: 700; margin: 0; letter-spacing: 1px;">Accurate Identification</h2>
                             </div>
-                            <!-- Mobile Nav -->
-                            <div class="mobile-nav mobile-nav-wrapper"></div>
-                            <!-- End Mobile Nav -->
-                        </div>
-                        <div class="col-lg-8 col-md-9 col-sm-12 col-12">
-                            <!-- Main Menu -->
+                            
+                            <!-- Main Menu (Desktop) -->
                             <div class="main-menu custom-main-menu-wrapper">
                                 <nav class="navigation">
                                     <ul class="nav menu custom-desktop-menu">
@@ -95,12 +133,33 @@
                                     </ul>
                                 </nav>
                             </div>
-                            <!--/ End Main Menu -->
+
+                            <!-- Hamburger Icon (Mobile) -->
+                            <button class="hamburger-btn" onclick="toggleMobileMenu()">&#9776;</button>
+                        </div>
+                        
+                        <!-- Mobile Dropdown Menu -->
+                        <div class="col-12">
+                            <ul class="mobile-dropdown-menu" id="mobileMenu">
+                                <li class="active"><a href="{% url 'index' %}">Home</a></li>
+                                <li><a href="{% url 'loginForm' %}">Login</a></li>
+                                <li><a href="{% url 'userRegisterForm' %}">Register</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            function toggleMobileMenu() {
+                var menu = document.getElementById("mobileMenu");
+                if (menu.classList.contains("show")) {
+                    menu.classList.remove("show");
+                } else {
+                    menu.classList.add("show");
+                }
+            }
+        </script>
     </header>
     <div style="margin-top: 30px;"></div>
     <!-- End Header Area -->
